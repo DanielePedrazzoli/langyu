@@ -30,12 +30,17 @@ class MyApp extends StatelessWidget {
       appBarTheme: AppBarTheme(backgroundColor: Colors.transparent, scrolledUnderElevation: 0),
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, brightness: brightness, primary: Colors.white),
       inputDecorationTheme: InputDecorationTheme(
-        fillColor: Color(0xFF424242),
+        fillColor: Color(0xFF0f151f),
+
         filled: true,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
-        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Color(0xff1e2a3a)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Color(0xff1e2a3a)),
+        ),
         floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       expansionTileTheme: ExpansionTileThemeData(shape: RoundedRectangleBorder()),

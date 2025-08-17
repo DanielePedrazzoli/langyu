@@ -38,79 +38,67 @@ class _DesktopHomeState extends State<DesktopHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0, scrolledUnderElevation: 0),
-
-      drawer: Drawer(),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: SizedBox(
-            width: 600,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Na'vi sentence analizer", style: Theme.of(context).textTheme.headlineLarge),
-                SizedBox(height: 64),
-                Stack(
-                  children: [
-                    TextField(
-                      minLines: 1,
-                      maxLines: 7,
-                      readOnly: analizing,
-                      textAlignVertical: TextAlignVertical.top,
-                      controller: controller,
-                      decoration: InputDecoration(
-                        suffixIcon: SizedBox.shrink(),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
-                        labelText: 'Enter a sentence to analize ...',
-                      ),
-                    ),
-
-                    Positioned(
-                      right: 6,
-                      bottom: 6,
-                      child: Container(
-                        padding: EdgeInsets.zero,
-                        margin: EdgeInsets.zero,
-                        alignment: Alignment.bottomCenter,
-                        width: 36,
-                        height: 36,
-                        child: analizing
-                            ? SpinKitThreeBounce(color: Colors.white, size: 16)
-                            : Container(
-                                decoration: BoxDecoration(color: const Color.fromARGB(255, 255, 255, 255), borderRadius: BorderRadius.circular(32)),
-                                child: IconButton(
-                                  padding: EdgeInsets.zero,
-                                  onPressed: () {
-                                    onSubmit(controller.text);
-                                  },
-                                  icon: const Icon(Icons.search, color: Colors.black),
-                                ),
-                              ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 64),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 24),
-                  child: Wrap(
-                    spacing: 24,
-                    runSpacing: 34,
-                    alignment: WrapAlignment.center,
-                    runAlignment: WrapAlignment.center,
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          children: [
+            Center(child: Text("Langyu", style: Theme.of(context).textTheme.headlineLarge)),
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xff1e2a3a)),
+                boxShadow: const [
+                  BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.35), blurRadius: 24, offset: Offset(0, 6)),
+                  BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.25), blurRadius: 6, offset: Offset(0, 2)),
+                ],
+                borderRadius: BorderRadius.circular(24),
+                color: Color(0xff0b0f14),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      OutlinedButton(onPressed: () {}, child: Text("What is this")),
-                      OutlinedButton(onPressed: () {}, child: Text("How to use")),
-                      OutlinedButton(onPressed: () {}, child: Text("What can do")),
-                      OutlinedButton(onPressed: () {}, child: Text("How it work")),
-                      OutlinedButton(onPressed: () {}, child: Text("Give me an example")),
+                      Text("Enter Na'vi text", style: Theme.of(context).textTheme.headlineSmall),
+                      Spacer(),
+                      SegmentedButton(
+                        onSelectionChanged: (_) {},
+                        segments: [
+                          ButtonSegment(value: 0, label: Text("Simple search")),
+                          ButtonSegment(value: 1, label: Text("Text analysis")),
+                        ],
+                        showSelectedIcon: false,
+                        selected: {0},
+                      ),
                     ],
                   ),
-                ),
-              ],
+
+                  SizedBox(height: 32),
+                  TextField(
+                    minLines: 6,
+                    maxLines: 16,
+                    readOnly: analizing,
+                    controller: controller,
+                    onSubmitted: onSubmit,
+                    decoration: InputDecoration(suffixIcon: SizedBox.shrink(), hintText: 'Enter a sentence to analize ...', alignLabelWithHint: true),
+                  ),
+
+                  SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Spacer(),
+                      FilledButton.icon(onPressed: () {}, label: Text("Clear"), icon: Icon(Icons.clear)),
+
+                      SizedBox(width: 8),
+                      FilledButton.icon(onPressed: () {}, label: Text("Find"), icon: Icon(Icons.send)),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
+
+            TextButton(onPressed: () {}, child: Text("data")),
+          ],
         ),
       ),
     );
