@@ -49,45 +49,42 @@ class _SentenceTreePageState extends State<SentenceTreePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Step 3 — Layout Tree')),
-      body: Row(
-        children: [
-          Expanded(
-            child: InteractiveViewer(
-              maxScale: 100,
-              minScale: 0.01,
-              panEnabled: true,
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: TreeWidget(
-                      nodes: treeNodes,
-                      onNodeTap: (treeNode) async {
-                        print(treeNode.node?.meaning.root);
-                        selectedNode = treeNode.node;
-                        showDetails = true;
-                        setState(() {});
+    return Row(
+      children: [
+        Expanded(
+          child: InteractiveViewer(
+            maxScale: 100,
+            minScale: 0.01,
+            panEnabled: true,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: TreeWidget(
+                    nodes: treeNodes,
+                    onNodeTap: (treeNode) async {
+                      print(treeNode.node?.meaning.root);
+                      selectedNode = treeNode.node;
+                      showDetails = true;
+                      setState(() {});
 
-                        if (selectedNode != null && Platform.isAndroid) {
-                          await showModalBottomSheet<void>(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return DetailsPanelMobile(onClose: _hideDetails, meaning: selectedNode!.meaning);
-                            },
-                          );
-                        }
-                      },
-                    ),
+                      if (selectedNode != null && Platform.isAndroid) {
+                        await showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return DetailsPanelMobile(onClose: _hideDetails, meaning: selectedNode!.meaning);
+                          },
+                        );
+                      }
+                    },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
+        ),
 
-          if (Platform.isWindows && showDetails && selectedNode != null) DetailsPanelDesktop(onClose: _hideDetails, meaning: selectedNode!.meaning),
-        ],
-      ),
+        if (Platform.isWindows && showDetails && selectedNode != null) DetailsPanelDesktop(onClose: _hideDetails, meaning: selectedNode!.meaning),
+      ],
     );
   }
 }

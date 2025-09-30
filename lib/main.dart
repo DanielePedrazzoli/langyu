@@ -10,7 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Dictionary dictionary = Dictionary();
   Directory directory = await getApplicationSupportDirectory();
-  await dictionary.loadDictionary("${directory.path}/dictionary.json");
+  await dictionary.loadDictionary(directory);
 
   setDictionary(dictionary);
 
@@ -22,82 +22,72 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = Brightness.dark;
+    // var baseTheme = ThemeData(
+    //   useMaterial3: true,
+    //   // scaffoldBackgroundColor: Color(0xFF27282A),
+    //   appBarTheme: AppBarTheme(backgroundColor: Colors.transparent, scrolledUnderElevation: 0),
+    //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, brightness: brightness, primary: Colors.white),
+    //   inputDecorationTheme: InputDecorationTheme(
+    //     fillColor: Color(0xFF0f151f),
+    //     filled: true,
+    //     enabledBorder: OutlineInputBorder(
+    //       borderRadius: BorderRadius.circular(12),
+    //       borderSide: BorderSide(color: Color(0xff1e2a3a)),
+    //     ),
+    //     focusedBorder: OutlineInputBorder(
+    //       borderRadius: BorderRadius.circular(12),
+    //       borderSide: BorderSide(color: Color(0xff1e2a3a)),
+    //     ),
+    //     floatingLabelBehavior: FloatingLabelBehavior.never,
+    //   ),
+    //   expansionTileTheme: ExpansionTileThemeData(shape: RoundedRectangleBorder()),
+    //   chipTheme: ChipThemeData(
+    //     backgroundColor: Color(0xFF27282A),
+    //     surfaceTintColor: Colors.transparent,
+    //     elevation: 0,
+    //     side: BorderSide(width: 1, color: const Color.fromARGB(78, 255, 255, 255)),
+    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    //   ),
+    // );
 
     var baseTheme = ThemeData(
       useMaterial3: true,
-      // scaffoldBackgroundColor: Color(0xFF27282A),
+      scaffoldBackgroundColor: const Color(0xFF242A3A),
+      brightness: Brightness.dark,
       appBarTheme: AppBarTheme(backgroundColor: Colors.transparent, scrolledUnderElevation: 0),
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, brightness: brightness, primary: Colors.white),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color(0xFF242A3A),
+        brightness: Brightness.dark,
+        primary: const Color.fromARGB(255, 56, 255, 255),
+      ),
       inputDecorationTheme: InputDecorationTheme(
-        fillColor: Color(0xFF0f151f),
-
+        fillColor: Color(0xFF303747),
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Color(0xff1e2a3a)),
+          borderSide: BorderSide(color: Color(0xff424858)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Color(0xff1e2a3a)),
+          borderSide: BorderSide(color: Color(0xff424858)),
         ),
         floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
-      expansionTileTheme: ExpansionTileThemeData(shape: RoundedRectangleBorder()),
-      chipTheme: ChipThemeData(
-        backgroundColor: Color(0xFF27282A),
-        surfaceTintColor: Colors.transparent,
+
+      cardTheme: CardThemeData(
+        color: Color(0xFF303747),
         elevation: 0,
-        side: BorderSide(width: 1, color: const Color.fromARGB(78, 255, 255, 255)),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: Color(0xff424858)),
+        ),
       ),
     );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: baseTheme.copyWith(textTheme: GoogleFonts.robotoTextTheme(baseTheme.textTheme)),
       home: Home(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(backgroundColor: Theme.of(context).colorScheme.inversePrimary, title: Text(widget.title)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: _incrementCounter, tooltip: 'Increment', child: const Icon(Icons.add)),
     );
   }
 }

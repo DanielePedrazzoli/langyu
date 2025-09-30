@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navi_text_analizer_package/navi_text_analizer.dart';
-import 'package:langyu/routes/results_page/components/interpreter_result.dart';
-import 'package:langyu/routes/results_page/components/parser_result.dart';
+import 'package:langyu/routes/results_page/components/sentence_results.dart';
 
 class ResultPage extends StatefulWidget {
   final AnalisisResult result;
@@ -14,36 +13,54 @@ class ResultPage extends StatefulWidget {
 class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
-    Word word = Word();
-    word.word = "test";
-
-    WordMeaning meaning = WordMeaning();
-    meaning.dictKey = "oe:pn";
-
-    word.meanings.add(meaning);
-    // return const Placeholder();
     return DefaultTabController(
       initialIndex: 0,
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Resuls"),
+          title: Text("Analisis Result", style: Theme.of(context).textTheme.headlineMedium),
           bottom: TabBar(
             tabs: [
-              Tab(text: "Parser"),
-              Tab(text: "Interpreter (${widget.result.interpreterResult.length})"),
+              Tab(text: "Output"),
+              Tab(text: "Sentences (${widget.result.translationsResults.length})"),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            ListView(
-              padding: const EdgeInsets.all(8),
-              children: widget.result.parserResult.map((w) => ParserResult(word: w)).toList(),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: TextEditingController(text: widget.result.input),
+                      maxLines: null,
+                      expands: true,
+                      textAlignVertical: TextAlignVertical.top,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Expanded(
+                    child: TextField(
+                      controller: TextEditingController(text: widget.result.output),
+                      maxLines: null,
+                      readOnly: true,
+                      expands: true,
+                      textAlignVertical: TextAlignVertical.top,
+                    ),
+                  ),
+                ],
+              ),
             ),
+
+            // ListView(
+            //   padding: const EdgeInsets.all(8),
+            //   children: widget.result.parserResult.map((w) => ParserResult(word: w)).toList(),
+            // ),
             ListView(
               padding: const EdgeInsets.all(8),
-              children: widget.result.interpreterResult.map((list) => InterpreterResult(phrase: list)).toList(),
+              children: widget.result.translationsResults.map((TranslationPhrase p) => SentenceResults(translationPhrase: p)).toList(),
             ),
           ],
         ),

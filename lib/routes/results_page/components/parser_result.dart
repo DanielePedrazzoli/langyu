@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:langyu/routes/sentence_tree/components/details_panel/details_panel_desktop.dart';
 import 'package:langyu/routes/sentence_tree/components/details_panel/details_panel_mobile.dart';
 import 'package:navi_text_analizer_package/navi_text_analizer.dart';
 

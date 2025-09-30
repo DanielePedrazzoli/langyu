@@ -37,61 +37,74 @@ class _MobileHomeState extends State<MobileHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text("Langyu", style: Theme.of(context).textTheme.headlineMedium), centerTitle: true),
       drawer: Drawer(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => onSubmit(controller.text),
+        label: Text("Analize"),
+        icon: Icon(Icons.search),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Expanded(
-              child: Column(
-                children: [
-                  Text("Analizer"),
-                  TextButton(onPressed: () {}, child: Text("data")),
-                ],
-              ),
+            TextField(
+              maxLines: null,
+              minLines: 1,
+              controller: controller,
+              decoration: InputDecoration(labelText: "Enter a sentence or a text to analize ..."),
             ),
+            SizedBox(height: 16),
 
-            Stack(
-              children: [
-                TextField(
-                  minLines: 1,
-                  maxLines: 7,
-                  readOnly: analizing,
-                  textAlignVertical: TextAlignVertical.top,
-                  controller: controller,
-                  decoration: InputDecoration(
-                    suffixIcon: SizedBox.shrink(),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
-                    labelText: 'Enter a sentence to analize ...',
-                  ),
-                ),
+            // Expanded(
+            //   child: Column(
+            //     children: [
+            //       Text("Analizer"),
+            //       TextButton(onPressed: () {}, child: Text("data")),
+            //     ],
+            //   ),
+            // ),
 
-                Positioned(
-                  right: 10,
-                  bottom: 10,
-                  child: Container(
-                    padding: EdgeInsets.zero,
-                    margin: EdgeInsets.zero,
-                    alignment: Alignment.bottomCenter,
-                    width: 36,
-                    height: 36,
-                    child: analizing
-                        ? SpinKitThreeBounce(color: Colors.white, size: 16)
-                        : Container(
-                            decoration: BoxDecoration(color: const Color.fromARGB(255, 255, 255, 255), borderRadius: BorderRadius.circular(32)),
-                            child: IconButton(
-                              padding: EdgeInsets.zero,
-                              onPressed: () {
-                                onSubmit(controller.text);
-                              },
-                              icon: const Icon(Icons.search, color: Colors.black),
-                            ),
-                          ),
-                  ),
-                ),
-              ],
-            ),
+            // Stack(
+            //   children: [
+            //     TextField(
+            //       minLines: 1,
+            //       maxLines: 7,
+            //       readOnly: analizing,
+            //       textAlignVertical: TextAlignVertical.top,
+            //       controller: controller,
+            //       decoration: InputDecoration(
+            //         suffixIcon: SizedBox.shrink(),
+            //         border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
+            //         labelText: 'Enter a sentence to analize ...',
+            //       ),
+            //     ),
+
+            //     Positioned(
+            //       right: 10,
+            //       bottom: 10,
+            //       child: Container(
+            //         padding: EdgeInsets.zero,
+            //         margin: EdgeInsets.zero,
+            //         alignment: Alignment.bottomCenter,
+            //         width: 36,
+            //         height: 36,
+            //         child: analizing
+            //             ? SpinKitThreeBounce(color: Colors.white, size: 16)
+            //             : Container(
+            //                 decoration: BoxDecoration(color: const Color.fromARGB(255, 255, 255, 255), borderRadius: BorderRadius.circular(32)),
+            //                 child: IconButton(
+            //                   padding: EdgeInsets.zero,
+            //                   onPressed: () {
+            //                     onSubmit(controller.text);
+            //                   },
+            //                   icon: const Icon(Icons.search, color: Colors.black),
+            //                 ),
+            //               ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),
