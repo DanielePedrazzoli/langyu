@@ -3,7 +3,7 @@ import 'package:langyu/routes/sentence_tree/sentence_tree.dart';
 import 'package:navi_text_analizer_package/navi_text_analizer.dart';
 
 class SentenceStructure extends StatefulWidget {
-  final Phrase sentence;
+  final Sentence sentence;
   const SentenceStructure({super.key, required this.sentence});
 
   @override
@@ -30,7 +30,7 @@ class _SentenceStructureState extends State<SentenceStructure> {
           children: [
             ListView(
               padding: const EdgeInsets.all(8),
-              children: widget.sentence.nodes
+              children: widget.sentence.traslationPhrases.first.phrase.nodes
                   .map(
                     (n) => Card(
                       child: ListTile(
@@ -49,7 +49,7 @@ class _SentenceStructureState extends State<SentenceStructure> {
                   )
                   .toList(),
             ),
-            SentenceTreePage(phrase: widget.sentence),
+            SentenceTreePage(phrase: widget.sentence.traslationPhrases.first.phrase),
           ],
         ),
       ),

@@ -22,7 +22,7 @@ class _ResultPageState extends State<ResultPage> {
           bottom: TabBar(
             tabs: [
               Tab(text: "Output"),
-              Tab(text: "Sentences (${widget.result.translationsResults.length})"),
+              Tab(text: "Sentences (${widget.result.sentences.length})"),
             ],
           ),
         ),
@@ -60,7 +60,7 @@ class _ResultPageState extends State<ResultPage> {
             // ),
             ListView(
               padding: const EdgeInsets.all(8),
-              children: widget.result.translationsResults.map((TranslationPhrase p) => SentenceResults(translationPhrase: p)).toList(),
+              children: widget.result.sentences.map((Sentence s) => SentenceResults(sentence: s)).toList(),
             ),
           ],
         ),

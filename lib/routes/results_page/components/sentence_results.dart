@@ -3,8 +3,8 @@ import 'package:langyu/routes/sentence_structure/sentence_structure.dart';
 import 'package:navi_text_analizer_package/navi_text_analizer.dart';
 
 class SentenceResults extends StatelessWidget {
-  final TranslationPhrase translationPhrase;
-  const SentenceResults({super.key, required this.translationPhrase});
+  final Sentence sentence;
+  const SentenceResults({super.key, required this.sentence});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,9 @@ class SentenceResults extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(translationPhrase.phrase.rawText, style: Theme.of(context).textTheme.titleLarge),
+            Text(sentence.raw, style: Theme.of(context).textTheme.titleLarge),
             Text(
-              translationPhrase.getPhraseTranslation().first,
+              sentence.traslationPhrases.first.getPhraseTranslation().first,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey.shade400, fontStyle: FontStyle.italic),
             ),
             SizedBox(height: 24),
@@ -25,7 +25,7 @@ class SentenceResults extends StatelessWidget {
               children: [
                 OutlinedButton(
                   onPressed: () {
-                    //s  Navigator.push(context, MaterialPageRoute(builder: (context) => SentenceStructure(sentence: sentence)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SentenceStructure(sentence: sentence)));
                   },
                   child: Text("Show structure"),
                 ),
