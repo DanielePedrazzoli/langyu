@@ -16,7 +16,7 @@ class SentenceResults extends StatelessWidget {
           children: [
             Text(sentence.raw, style: Theme.of(context).textTheme.titleLarge),
             Text(
-              sentence.traslationPhrases.first.getPhraseTranslation().first,
+              sentence.traslationPhrases.firstOrNull?.getPhraseTranslation().firstOrNull ?? "",
               style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey.shade400, fontStyle: FontStyle.italic),
             ),
             SizedBox(height: 24),

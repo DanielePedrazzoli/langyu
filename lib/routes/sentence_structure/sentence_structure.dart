@@ -30,7 +30,7 @@ class _SentenceStructureState extends State<SentenceStructure> {
           children: [
             ListView(
               padding: const EdgeInsets.all(8),
-              children: widget.sentence.traslationPhrases.first.phrase.nodes
+              children: (widget.sentence.traslationPhrases.firstOrNull?.phrase.nodes ?? List<WordNode>.empty())
                   .map(
                     (n) => Card(
                       child: ListTile(

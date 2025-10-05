@@ -6,9 +6,9 @@ import 'package:langyu/routes/home/home.dart';
 import 'package:navi_text_analizer_package/navi_text_analizer.dart';
 import 'package:path_provider/path_provider.dart';
 
+Dictionary dictionary = Dictionary();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Dictionary dictionary = Dictionary();
   Directory directory = await getApplicationSupportDirectory();
   await dictionary.loadDictionary(directory);
 
