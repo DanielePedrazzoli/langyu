@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:langyu/routes/dictionary_page/dictionary_page.dart';
 import 'package:langyu/routes/results_page/result_page.dart';
 import 'package:navi_text_analizer_package/navi_text_analizer.dart';
 
@@ -38,7 +38,20 @@ class _MobileHomeState extends State<MobileHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Langyu", style: Theme.of(context).textTheme.headlineMedium), centerTitle: true),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(child: Text("Langyu")),
+            ListTile(
+              title: Text("Dictionary"),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DictionaryPage()));
+              },
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => onSubmit(controller.text),
         label: Text("Analize"),
