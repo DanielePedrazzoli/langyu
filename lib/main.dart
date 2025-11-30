@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:fluent_ui/fluent_ui.dart' as fluent_ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:langyu/routes/home/desktop/desktop_home.dart';
 import 'package:langyu/routes/home/home.dart';
 import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,56 +12,40 @@ import 'package:path_provider/path_provider.dart';
 Dictionary dictionary = Dictionary();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  const platform = MethodChannel('app.channel.shared.data');
+  final sharedText = await platform.invokeMethod<String>('getSharedText') ?? "";
+
   Directory directory = await getApplicationSupportDirectory();
   await dictionary.loadDictionary(directory);
 
   setDictionary(dictionary);
 
-  runApp(const MyApp());
+  runApp(MyApp(sharedText: sharedText));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String sharedText;
+  const MyApp({super.key, required this.sharedText});
 
   @override
   Widget build(BuildContext context) {
-    // var baseTheme = ThemeData(
-    //   useMaterial3: true,
-    //   // scaffoldBackgroundColor: Color(0xFF27282A),
-    //   appBarTheme: AppBarTheme(backgroundColor: Colors.transparent, scrolledUnderElevation: 0),
-    //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, brightness: brightness, primary: Colors.white),
-    //   inputDecorationTheme: InputDecorationTheme(
-    //     fillColor: Color(0xFF0f151f),
-    //     filled: true,
-    //     enabledBorder: OutlineInputBorder(
-    //       borderRadius: BorderRadius.circular(12),
-    //       borderSide: BorderSide(color: Color(0xff1e2a3a)),
-    //     ),
-    //     focusedBorder: OutlineInputBorder(
-    //       borderRadius: BorderRadius.circular(12),
-    //       borderSide: BorderSide(color: Color(0xff1e2a3a)),
-    //     ),
-    //     floatingLabelBehavior: FloatingLabelBehavior.never,
-    //   ),
-    //   expansionTileTheme: ExpansionTileThemeData(shape: RoundedRectangleBorder()),
-    //   chipTheme: ChipThemeData(
-    //     backgroundColor: Color(0xFF27282A),
-    //     surfaceTintColor: Colors.transparent,
-    //     elevation: 0,
-    //     side: BorderSide(width: 1, color: const Color.fromARGB(78, 255, 255, 255)),
-    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    //   ),
-    // );
-
     var baseTheme = ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: const Color(0xFF242A3A),
       brightness: Brightness.dark,
       appBarTheme: AppBarTheme(backgroundColor: Colors.transparent, scrolledUnderElevation: 0),
+      navigationRailTheme: NavigationRailThemeData(
+        backgroundColor: const Color(0xFF242A3A),
+        elevation: 0,
+        unselectedIconTheme: IconThemeData(color: const Color.fromARGB(255, 159, 163, 165)),
+        selectedIconTheme: IconThemeData(color: const Color.fromARGB(255, 63, 176, 252)),
+      ),
       colorScheme: ColorScheme.fromSeed(
         seedColor: const Color(0xFF242A3A),
         brightness: Brightness.dark,
-        primary: const Color.fromARGB(255, 56, 255, 255),
+        primary: const Color.fromARGB(255, 36, 164, 214),
+        onPrimary: Colors.white,
       ),
       inputDecorationTheme: InputDecorationTheme(
         fillColor: Color(0xFF303747),
@@ -84,10 +71,18 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: baseTheme.copyWith(textTheme: GoogleFonts.robotoTextTheme(baseTheme.textTheme)),
-      home: Home(),
-    );
+
+    if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+      return fluent_ui.FluentApp(
+        home: DesktopHome(),
+        theme: fluent_ui.FluentThemeData(brightness: Brightness.dark),
+      );
+    } else {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: baseTheme.copyWith(textTheme: GoogleFonts.robotoTextTheme(baseTheme.textTheme)),
+        home: Home(sharedText: sharedText),
+      );
+    }
   }
 }

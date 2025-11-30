@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 import 'package:langyu/routes/results_page/components/sentence_results.dart';
 
-class ResultPage extends StatefulWidget {
+class ResultPageMobile extends StatefulWidget {
   final AnalisisResult result;
-  const ResultPage({super.key, required this.result});
+  const ResultPageMobile({super.key, required this.result});
 
   @override
-  State<ResultPage> createState() => _ResultPageState();
+  State<ResultPageMobile> createState() => _ResultPageMobileState();
 }
 
-class _ResultPageState extends State<ResultPage> {
+class _ResultPageMobileState extends State<ResultPageMobile> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -31,23 +31,23 @@ class _ResultPageState extends State<ResultPage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
-                    child: TextField(
-                      controller: TextEditingController(text: widget.result.input),
-                      maxLines: null,
-                      expands: true,
-                      textAlignVertical: TextAlignVertical.top,
+                    child: Card(
+                      child: Container(
+                        padding: EdgeInsets.all(16),
+                        child: Text(widget.result.input, style: Theme.of(context).textTheme.bodyLarge),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 24),
                   Expanded(
-                    child: TextField(
-                      controller: TextEditingController(text: widget.result.output),
-                      maxLines: null,
-                      readOnly: true,
-                      expands: true,
-                      textAlignVertical: TextAlignVertical.top,
+                    child: Card(
+                      child: Container(
+                        padding: EdgeInsets.all(16),
+                        child: Text(widget.result.output, style: Theme.of(context).textTheme.bodyLarge),
+                      ),
                     ),
                   ),
                 ],

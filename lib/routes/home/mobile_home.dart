@@ -4,7 +4,8 @@ import 'package:langyu/routes/results_page/pages/mobile/result_page_mobile.dart'
 import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
 class MobileHome extends StatefulWidget {
-  const MobileHome({super.key});
+  final String sharedText;
+  const MobileHome({super.key, required this.sharedText});
 
   @override
   State<MobileHome> createState() => _MobileHomeState();
@@ -31,7 +32,13 @@ class _MobileHomeState extends State<MobileHome> {
     analizing = false;
     setState(() {});
 
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage(result: result)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPageMobile(result: result)));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controller.text = widget.sharedText;
   }
 
   @override
