@@ -6,10 +6,10 @@ import 'package:langyu/routes/sentence_tree/components/details_panel/details_pan
 import 'package:langyu/routes/sentence_tree/components/tree_widget.dart';
 import 'package:langyu/routes/sentence_tree/models/tree_layout.dart';
 import 'package:langyu/routes/sentence_tree/models/tree_node.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
 class SentenceTreePage extends StatefulWidget {
-  final Phrase phrase;
+  final SegmentTree phrase;
   const SentenceTreePage({super.key, required this.phrase});
   @override
   State<SentenceTreePage> createState() => _SentenceTreePageState();

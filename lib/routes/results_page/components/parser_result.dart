@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:langyu/routes/sentence_tree/components/details_panel/details_panel_mobile.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
 class ParserResult extends StatelessWidget {
   final Word word;

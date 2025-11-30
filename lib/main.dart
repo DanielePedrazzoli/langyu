@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:langyu/routes/home/home.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 import 'package:path_provider/path_provider.dart';
 
 Dictionary dictionary = Dictionary();

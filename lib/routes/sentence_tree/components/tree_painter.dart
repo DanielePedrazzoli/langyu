@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:langyu/routes/sentence_tree/models/tree_node.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
 class TreePainter extends CustomPainter {
   final List<TreeNode> nodes;

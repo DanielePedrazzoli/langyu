@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
 class DetailsPanelImage extends StatelessWidget {
   final WordMeaning meaning;

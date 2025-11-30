@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:langyu/routes/dictionary_page/dictionary_page.dart';
-import 'package:langyu/routes/results_page/result_page.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:langyu/routes/results_page/pages/mobile/result_page_mobile.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
 class MobileHome extends StatefulWidget {
   const MobileHome({super.key});

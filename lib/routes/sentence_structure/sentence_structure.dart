@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:langyu/routes/sentence_tree/sentence_tree.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
 class SentenceStructure extends StatefulWidget {
   final Sentence sentence;
@@ -27,6 +27,7 @@ class _SentenceStructureState extends State<SentenceStructure> {
           ),
         ),
         body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: [
             ListView(
               padding: const EdgeInsets.all(8),

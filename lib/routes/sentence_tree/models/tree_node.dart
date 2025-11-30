@@ -1,4 +1,4 @@
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
 class TreeNode {
   String id;
@@ -21,7 +21,7 @@ class TreeNode {
     return TreeNode(name, children);
   }
 
-  static TreeNode fromPhrase(Phrase phrase) {
+  static TreeNode fromPhrase(SegmentTree phrase) {
     List<TreeNode> children = [];
     children = phrase.nodes.map<TreeNode>((node) => _fromWordNode(node)).toList();
     return TreeNode("root", children);

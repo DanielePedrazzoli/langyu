@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
 class DetailsPanelAffixes extends StatelessWidget {
   final WordMeaning meaning;

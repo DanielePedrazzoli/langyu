@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:langyu/routes/sentence_structure/sentence_structure.dart';
-import 'package:navi_text_analizer_package/navi_text_analizer.dart';
+import 'package:navi_text_analizer_package/navi_text_analizer_package.dart';
 
-class SentenceResults extends StatelessWidget {
+class SentenceResults extends StatefulWidget {
   final Sentence sentence;
   const SentenceResults({super.key, required this.sentence});
 
